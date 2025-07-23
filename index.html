@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MOLECULAR TECHNOLOGY | HOME</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Caladea&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -55,7 +57,7 @@
       line-height: 1.4;
       text-align: center;
       overflow: hidden;
-      white-space: normal; /* allows wrapping */
+      white-space: normal;
       border-right: 2px solid white;
       animation: typingWrap 5s steps(60, end), blink-caret 0.75s step-end infinite;
     }
@@ -224,43 +226,844 @@
       right: 5px;
     }
 
-
-    footer {
-      margin-top: 60px;
-      padding: 20px;
+    /* INTERACTIVE FEATURES SECTION */
+    .interactive-section {
+      margin: 80px auto;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    
+    .interactive-header {
       text-align: center;
-      font-family: 'Caladea', serif;
+      margin-bottom: 50px;
     }
-
-    footer h3 {
+    
+    .interactive-header h2 {
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #ff0000, #ff00d4, #04fdf7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+    
+    .interactive-header p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: #ccc;
+    }
+    
+    .feature-container {
+      background: linear-gradient(145deg, #0a0a0a, #111);
+      border: 1px solid #333;
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 60px;
+      box-shadow: 0 10px 30px rgba(255, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+    
+    .feature-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(255, 0, 0, 0.2);
+    }
+    
+    .feature-container::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #ff0000, #ff00d4, #04fdf7, #04fdad);
+      z-index: -1;
+      border-radius: 22px;
+    }
+    
+    .feature-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9));
+      z-index: -1;
+      border-radius: 20px;
+    }
+    
+    .feature-title {
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 20px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .feature-title i {
+      color: #ff0000;
+      font-size: 2rem;
+    }
+    
+    .feature-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: center;
+    }
+    
+    .feature-description {
+      flex: 1;
+      min-width: 300px;
+      padding: 20px;
+      background: rgba(20, 20, 20, 0.7);
+      border-radius: 15px;
+      border-left: 3px solid red;
+    }
+    
+    .feature-description h3 {
+      color: #ff0000;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+    
+    .feature-description p {
+      line-height: 1.7;
+      color: #ddd;
+      margin-bottom: 20px;
+    }
+    
+    .feature-interactive {
+      flex: 1;
+      min-width: 300px;
+      height: 300px;
+      background: #0a0a0a;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #333;
+    }
+    
+    /* Molecule Builder Styles */
+    .molecule-builder {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .atom-palette {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 15px;
+      border-bottom: 1px solid #333;
+    }
+    
+    .atom {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: grab;
+      font-weight: bold;
+      box-shadow: 0 0 10px currentColor;
+      transition: all 0.3s ease;
+    }
+    
+    .atom:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px currentColor;
+    }
+    
+    .atom.carbon { background: #505050; color: white; }
+    .atom.hydrogen { background: #ffffff; color: black; }
+    .atom.oxygen { background: #ff4d4d; color: white; }
+    .atom.nitrogen { background: #4d79ff; color: white; }
+    
+    .molecule-canvas {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .molecule-display {
+      width: 200px;
+      height: 200px;
+      background: rgba(30, 30, 30, 0.9);
+      border-radius: 50%;
+      position: relative;
+      border: 2px solid #444;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+    }
+    
+    .bond {
+      position: absolute;
+      height: 5px;
+      background: #aaa;
+      transform-origin: 0 0;
+    }
+    
+    .molecule-name {
+      position: absolute;
+      bottom: 15px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #ff4d4d;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+    
+    /* Quiz Game Styles */
+    .quiz-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    
+    .quiz-question {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #ddd;
+    }
+    
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    
+    .quiz-option {
+      padding: 12px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .quiz-option:hover {
+      background: #222;
+      border-color: #ff4d4d;
+    }
+    
+    .quiz-option.correct {
+      background: rgba(0, 128, 0, 0.2);
+      border-color: #00ff00;
+    }
+    
+    .quiz-option.incorrect {
+      background: rgba(128, 0, 0, 0.2);
+      border-color: #ff0000;
+    }
+    
+    .quiz-feedback {
+      margin-top: 20px;
+      text-align: center;
+      min-height: 30px;
+    }
+    
+    /* Protein Folding Styles */
+    .protein-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .protein-selector {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .protein-btn {
+      padding: 10px 15px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .protein-btn:hover, .protein-btn.active {
+      background: #222;
+      border-color: #ff4d4d;
+    }
+    
+    .protein-display {
+      width: 200px;
+      height: 200px;
+      background: rgba(30, 30, 30, 0.9);
+      border-radius: 10px;
+      position: relative;
+      border: 2px solid #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .protein-structure {
+      position: relative;
+      width: 80%;
+      height: 80%;
+    }
+    
+    .protein-chain {
+      position: absolute;
+      width: 8px;
+      height: 100px;
+      background: #ff4d4d;
+      border-radius: 4px;
+      transform-origin: bottom center;
+    }
+    
+    .fold-btn {
+      margin-top: 20px;
+      padding: 10px 25px;
+      background: linear-gradient(to right, #ff0000, #ff00d4);
+      border: none;
+      border-radius: 8px;
       color: white;
-      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .fold-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    }
+    
+    /* Size Comparator Styles */
+    .comparator-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .scale-display {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #ff4d4d;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+    
+    .size-slider {
+      width: 80%;
+      margin-bottom: 30px;
+      -webkit-appearance: none;
+      height: 10px;
+      border-radius: 5px;
+      background: #333;
+      outline: none;
+    }
+    
+    .size-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #ff0000;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+    }
+    
+    .objects-container {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 30px;
+      height: 150px;
+      width: 100%;
+    }
+    
+    .size-object {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.5s ease;
+    }
+    
+    .object-visual {
+      background: #ff4d4d;
+      border-radius: 5px;
       margin-bottom: 10px;
+      transition: all 0.5s ease;
     }
-
-    .social-icons img {
-      width: 64px;
-      height: 64px;
-      margin: 0 10px;
-      filter: drop-shadow(0 0 5px red);
+    
+    .object-label {
+      font-size: 0.9rem;
+      color: #ddd;
+      text-align: center;
     }
-
-    @keyframes aurora {
-      0% {background-position: 0% 50%}
-      50% {background-position: 100% 50%}
-      100% {background-position: 0% 50%}
+    
+    /* Reaction Simulator Styles */
+    .reaction-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
-
-    @keyframes typingWrap {
-      from { max-height: 0; opacity: 0; }
-      to { max-height: 500px; opacity: 1; }
+    
+    .chemicals-palette {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
     }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent; }
-      50% { border-color: white; }
+    
+    .chemical {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: grab;
+      font-weight: bold;
+      box-shadow: 0 0 10px currentColor;
+      transition: all 0.3s ease;
     }
-
+    
+    .chemical:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px currentColor;
+    }
+    
+    .chemical.chem1 { background: #ff4d4d; color: white; } /* Red */
+    .chemical.chem2 { background: #4d79ff; color: white; } /* Blue */
+    .chemical.chem3 { background: #4dff88; color: black; } /* Green */
+    .chemical.chem4 { background: #ffdd4d; color: black; } /* Yellow */
+    
+    .reaction-beaker {
+      width: 150px;
+      height: 180px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 3px solid #444;
+      border-top: none;
+      border-radius: 0 0 20px 20px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    .reaction-result {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      transition: height 0.5s ease;
+    }
+    
+    .reaction-name {
+      font-size: 1.2rem;
+      color: #ff4d4d;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+      min-height: 30px;
+      text-align: center;
+    }
+    
+    /* Thought Reactor Styles */
+    .thought-reactor {
+      background: linear-gradient(145deg, #0a0a0a, #111);
+      border: 1px solid #333;
+      border-radius: 20px;
+      padding: 40px;
+      margin: 60px auto;
+      max-width: 800px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(255, 0, 0, 0.2);
+    }
+    
+    .reactor-header h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      background: linear-gradient(to right, #ff0000, #ff00d4, #04fdf7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    }
+    
+    .reactor-header p {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+    }
+    
+    .reactor-input {
+      position: relative;
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+    
+    .reactor-input input {
+      width: 100%;
+      padding: 15px 20px;
+      background: rgba(30, 30, 30, 0.7);
+      border: 2px solid #444;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      color: white;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    
+    .reactor-input input:focus {
+      border-color: #ff4d4d;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    }
+    
+    .reactor-input button {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      padding: 10px 25px;
+      background: linear-gradient(to right, #ff0000, #ff00d4);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .reactor-input button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    }
+    
+    .reactor-display {
+      height: 300px;
+      background: rgba(10, 10, 10, 0.7);
+      border-radius: 15px;
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .reactor-message {
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-align: center;
+      padding: 20px;
+      z-index: 2;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+    
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    
+    .effect-fire { background: linear-gradient(to bottom, #000, #500); }
+    .effect-tech { background: linear-gradient(to bottom, #000, #002050); }
+    .effect-chaos { background: linear-gradient(to bottom, #000, #300050); }
+    .effect-ai { background: linear-gradient(to bottom, #000, #005050); }
+    .effect-space { background: linear-gradient(to bottom, #000, #000050); }
+    .effect-future { background: linear-gradient(to bottom, #000, #500050); }
+    .effect-neural { background: linear-gradient(to bottom, #000, #505000); }
+    .effect-quantum { background: linear-gradient(to bottom, #000, #005500); }
+    
+    /* FOOTER STYLES */
+    footer {
+      background: #121212;
+      padding: 60px 20px 30px;
+      color: #ccc;
+      font-family: 'Caladea', serif;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .logo-placeholder {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, #ff0000, #ff00d4);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.8rem;
+    }
+    
+    .footer-logo h3 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+    }
+    
+    .footer-mission {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      max-width: 400px;
+    }
+    
+    .footer-links h4 {
+      color: white;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-links h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: red;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      position: relative;
+    }
+    
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: red;
+      transition: width 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    }
+    
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+    
+    .social-section {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid #333;
+      margin-top: 30px;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 20px;
+    }
+    
+    .social-icons a {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-icons a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #ff0000, #ff00d4);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+    
+    .social-icons a:hover::before {
+      opacity: 1;
+    }
+    
+    .social-icons a i {
+      color: #ccc;
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .social-icons a:hover i {
+      color: white;
+      transform: scale(1.2);
+    }
+    
+    .copyright {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    
+    /* GLITCH EFFECT */
+    .glitch {
+      position: relative;
+    }
+    
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .glitch::before {
+      left: 2px;
+      text-shadow: -1px 0 red;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+    
+    .glitch::after {
+      left: -2px;
+      text-shadow: -1px 0 blue;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim2 5s infinite linear alternate-reverse;
+    }
+    
+    @keyframes glitch-anim {
+      0% { clip: rect(42px, 9999px, 44px, 0); }
+      5% { clip: rect(12px, 9999px, 59px, 0); }
+      10% { clip: rect(48px, 9999px, 29px, 0); }
+      15% { clip: rect(42px, 9999px, 73px, 0); }
+      20% { clip: rect(63px, 9999px, 27px, 0); }
+      25% { clip: rect(34px, 9999px, 55px, 0); }
+      30% { clip: rect(86px, 9999px, 73px, 0); }
+      35% { clip: rect(20px, 9999px, 20px, 0); }
+      40% { clip: rect(26px, 9999px, 60px, 0); }
+      45% { clip: rect(25px, 9999px, 66px, 0); }
+      50% { clip: rect(57px, 9999px, 98px, 0); }
+      55% { clip: rect(5px, 9999px, 46px, 0); }
+      60% { clip: rect(82px, 9999px, 31px, 0); }
+      65% { clip: rect(54px, 9999px, 27px, 0); }
+      70% { clip: rect(28px, 9999px, 99px, 0); }
+      75% { clip: rect(45px, 9999px, 69px, 0); }
+      80% { clip: rect(23px, 9999px, 85px, 0); }
+      85% { clip: rect(54px, 9999px, 84px, 0); }
+      90% { clip: rect(45px, 9999px, 47px, 0); }
+      95% { clip: rect(37px, 9999px, 73px, 0); }
+      100% { clip: rect(73px, 9999px, 3px, 0); }
+    }
+    
+    @keyframes glitch-anim2 {
+      0% { clip: rect(65px, 9999px, 100px, 0); }
+      5% { clip: rect(52px, 9999px, 74px, 0); }
+      10% { clip: rect(79px, 9999px, 85px, 0); }
+      15% { clip: rect(75px, 9999px, 5px, 0); }
+      20% { clip: rect(67px, 9999px, 61px, 0); }
+      25% { clip: rect(14px, 9999px, 79px, 0); }
+      30% { clip: rect(1px, 9999px, 66px, 0); }
+      35% { clip: rect(86px, 9999px, 30px, 0); }
+      40% { clip: rect(23px, 9999px, 98px, 0); }
+      45% { clip: rect(85px, 9999px, 72px, 0); }
+      50% { clip: rect(71px, 9999px, 75px, 0); }
+      55% { clip: rect(2px, 9999px, 48px, 0); }
+      60% { clip: rect(30px, 9999px, 16px, 0); }
+      65% { clip: rect(59px, 9999px, 50px, 0); }
+      70% { clip: rect(41px, 9999px, 62px, 0); }
+      75% { clip: rect(2px, 9999px, 82px, 0); }
+      80% { clip: rect(47px, 9999px, 73px, 0); }
+      85% { clip: rect(3px, 9999px, 27px, 0); }
+      90% { clip: rect(26px, 9999px, 55px, 0); }
+      95% { clip: rect(42px, 9999px, 97px, 0); }
+      100% { clip: rect(38px, 9999px, 49px, 0); }
+    }
+    
+    @media (max-width: 1024px) {
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
     @media (max-width: 768px) {
       header h1 {
         font-size: 32px;
@@ -280,12 +1083,40 @@
         width: 250px;
         height: 400px;
       }
-
-       .arrow {
+      .arrow {
         font-size: 24px;
         padding: 8px;
-      
       }
+      
+      .feature-content {
+        flex-direction: column;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .footer-links {
+        border-bottom: 1px solid #333;
+        padding-bottom: 20px;
+      }
+    }
+    
+    @keyframes aurora {
+      0% {background-position: 0% 50%}
+      50% {background-position: 100% 50%}
+      100% {background-position: 0% 50%}
+    }
+
+    @keyframes typingWrap {
+      from { max-height: 0; opacity: 0; }
+      to { max-height: 500px; opacity: 1; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: white; }
     }
   </style>
 </head>
@@ -312,11 +1143,11 @@
     <div class="scroll-wrapper">
       <button class="arrow left" onclick="scrollLeft('latestScroll')">◄</button>
       <div class="scroll-container" id="latestScroll">
-        <img src="Latestproductimage1" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Latestproductimage2" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Latestproductimage3" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Latestproductimage4" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Latestproductimage5" onclick="redirectTo('YOUR LINK')"/>
+        <img src="Latestproductimage1" onclick="redirectTo('LINK')"/>
+        <img src="Latestproductimage2" onclick="redirectTo('LINK')"/>
+        <img src="Latestproductimage3" onclick="redirectTo('LINK')"/>
+        <img src="Latestproductimage4" onclick="redirectTo('LINK')"/>
+        <img src="Latestproductimage5" onclick="redirectTo('LINK')"/>
       </div>
       <button class="arrow right" onclick="scrollRight('latestScroll')">►</button>
     </div>
@@ -326,23 +1157,253 @@
       <button class="arrow left" onclick="scrollLeft('upcomingScroll')">◄</button>
       <div class="scroll-container" id="upcomingScroll">
         <img src="assets/images/upcominginnovationssetcionimageno1productnameispetersecondversion.png" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Upcomingproductimage2" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Upcomingproductimage3" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Upcomingproductimage4" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Upcomingproductimage5" onclick="redirectTo('YOUR LINK')"/>
+        <img src="Upcomingproductimage2" onclick="redirectTo('LINK')"/>
+        <img src="Upcomingproductimage3" onclick="redirectTo('LINK')"/>
+        <img src="Upcomingproductimage4" onclick="redirectTo('LINK')"/>
+        <img src="Upcomingproductimage5" onclick="redirectTo('LINK')"/>
       </div>
       <button class="arrow right" onclick="scrollRight('upcomingScroll')">►</button>
     </div>
   </section>
-
+  
+  <!-- INTERACTIVE FEATURES SECTION -->
+  <div class="interactive-section">
+    <div class="interactive-header">
+      <h2>MOLECULAR INTERACTIVES</h2>
+      <p>Experience the future of molecular technology through our interactive simulations and games</p>
+    </div>
+    
+    <!-- Feature 1: Molecule Builder -->
+    <div class="feature-container">
+      <div class="feature-title">
+        <i class="fas fa-atom"></i>
+        <h3>BUILD-A-MOLECULE SANDBOX</h3>
+      </div>
+      <div class="feature-content">
+        <div class="feature-description">
+          <h3>Molecular Construction Kit</h3>
+          <p>Drag and drop atoms to create your own molecular structures. Our system will automatically detect bonds and display the resulting molecule in 3D space. Experiment with different combinations to discover unique molecular formations.</p>
+          <p><strong>Try creating:</strong> Water (H₂O), Carbon Dioxide (CO₂), or Ammonia (NH₃)</p>
+        </div>
+        <div class="feature-interactive">
+          <div class="molecule-builder">
+            <div class="atom-palette">
+              <div class="atom carbon" draggable="true" data-atom="C">C</div>
+              <div class="atom hydrogen" draggable="true" data-atom="H">H</div>
+              <div class="atom oxygen" draggable="true" data-atom="O">O</div>
+              <div class="atom nitrogen" draggable="true" data-atom="N">N</div>
+            </div>
+            <div class="molecule-canvas" id="moleculeCanvas">
+              <div class="molecule-display" id="moleculeDisplay">
+                <div class="molecule-name" id="moleculeName">Drag atoms here</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Feature 2: Nanotech Quiz -->
+    <div class="feature-container">
+      <div class="feature-title">
+        <i class="fas fa-vial"></i>
+        <h3>MOLECULAR NANOTECH QUIZ</h3>
+      </div>
+      <div class="feature-content">
+        <div class="feature-description">
+          <h3>Test Your Molecular Knowledge</h3>
+          <p>Challenge yourself with our molecular technology quiz. Answer questions about nanotechnology, molecular engineering, and cutting-edge scientific breakthroughs. Each correct answer reveals fascinating facts about our technological advancements.</p>
+          <p><strong>Difficulty:</strong> From beginner to expert levels</p>
+        </div>
+        <div class="feature-interactive">
+          <div class="quiz-container" id="quizContainer">
+            <div class="quiz-question" id="quizQuestion">What is the primary tool used to manipulate individual atoms?</div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-correct="true">Atomic Force Microscope</div>
+              <div class="quiz-option">Electron Microscope</div>
+              <div class="quiz-option">Optical Tweezers</div>
+              <div class="quiz-option">Centrifuge</div>
+            </div>
+            <div class="quiz-feedback" id="quizFeedback"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Feature 3: Protein Folding -->
+    <div class="feature-container">
+      <div class="feature-title">
+        <i class="fas fa-dna"></i>
+        <h3>PROTEIN FOLDING SIMULATOR</h3>
+      </div>
+      <div class="feature-content">
+        <div class="feature-description">
+          <h3>Explore Biomolecular Structures</h3>
+          <p>Select a protein and watch it fold into its functional 3D structure. Understand how amino acid sequences determine protein shapes and functions. This simulation demonstrates the complex process that occurs in nanoseconds within living cells.</p>
+          <p><strong>Featured Proteins:</strong> Insulin, Hemoglobin, Collagen</p>
+        </div>
+        <div class="feature-interactive">
+          <div class="protein-container">
+            <div class="protein-selector">
+              <div class="protein-btn active" data-protein="insulin">Insulin</div>
+              <div class="protein-btn" data-protein="hemoglobin">Hemoglobin</div>
+              <div class="protein-btn" data-protein="collagen">Collagen</div>
+            </div>
+            <div class="protein-display" id="proteinDisplay">
+              <div class="protein-structure" id="proteinStructure"></div>
+            </div>
+            <button class="fold-btn" id="foldBtn">FOLD PROTEIN</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Feature 4: Size Comparator -->
+    <div class="feature-container">
+      <div class="feature-title">
+        <i class="fas fa-ruler"></i>
+        <h3>NANOSCALE SIZE COMPARATOR</h3>
+      </div>
+      <div class="feature-content">
+        <div class="feature-description">
+          <h3>Visualize the Nanoscale World</h3>
+          <p>Adjust the slider to compare sizes from the atomic scale to everyday objects. See how nanoparticles, DNA strands, viruses, and bacteria compare to a human hair. This interactive helps conceptualize the incredibly small dimensions we work with in molecular technology.</p>
+          <p><strong>Scale Range:</strong> 0.1nm to 100μm</p>
+        </div>
+        <div class="feature-interactive">
+          <div class="comparator-container">
+            <div class="scale-display" id="scaleDisplay">Scale: 1 nanometer</div>
+            <input type="range" min="1" max="100" value="1" class="size-slider" id="sizeSlider">
+            <div class="objects-container" id="objectsContainer">
+              <div class="size-object">
+                <div class="object-visual" id="atomObject" style="width: 10px; height: 10px;"></div>
+                <div class="object-label">Atom</div>
+              </div>
+              <div class="size-object">
+                <div class="object-visual" id="dnaObject" style="width: 15px; height: 30px;"></div>
+                <div class="object-label">DNA</div>
+              </div>
+              <div class="size-object">
+                <div class="object-visual" id="virusObject" style="width: 25px; height: 25px;"></div>
+                <div class="object-label">Virus</div>
+              </div>
+              <div class="size-object">
+                <div class="object-visual" id="bacteriaObject" style="width: 40px; height: 20px;"></div>
+                <div class="object-label">Bacteria</div>
+              </div>
+              <div class="size-object">
+                <div class="object-visual" id="hairObject" style="width: 5px; height: 60px;"></div>
+                <div class="object-label">Hair</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Feature 5: Reaction Simulator -->
+    <div class="feature-container">
+      <div class="feature-title">
+        <i class="fas fa-flask"></i>
+        <h3>CHEMICAL REACTION SIMULATOR</h3>
+      </div>
+      <div class="feature-content">
+        <div class="feature-description">
+          <h3>Experiment with Molecular Reactions</h3>
+          <p>Drag chemicals into the beaker to simulate molecular reactions. Combine different elements to create compounds and observe the results. Our simulator demonstrates real chemical principles in an engaging, visual format.</p>
+          <p><strong>Try mixing:</strong> Hydrogen + Oxygen = Water</p>
+        </div>
+        <div class="feature-interactive">
+          <div class="reaction-container">
+            <div class="chemicals-palette">
+              <div class="chemical chem1" draggable="true" data-chem="H">H</div>
+              <div class="chemical chem2" draggable="true" data-chem="O">O</div>
+              <div class="chemical chem3" draggable="true" data-chem="N">N</div>
+              <div class="chemical chem4" draggable="true" data-chem="C">C</div>
+            </div>
+            <div class="reaction-beaker" id="reactionBeaker">
+              <div class="reaction-result" id="reactionResult"></div>
+            </div>
+            <div class="reaction-name" id="reactionName">Add chemicals to beaker</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- THOUGHT REACTOR -->
+  <div class="thought-reactor">
+    <div class="reactor-header">
+      <h2>THOUGHT REACTOR</h2>
+      <p>Type a word that defines your vision and witness a molecular reaction to your thoughts</p>
+    </div>
+    
+    <div class="reactor-input">
+      <input type="text" id="thoughtInput" placeholder="Type your word here...">
+      <button id="reactorBtn">ACTIVATE</button>
+    </div>
+    
+    <div class="reactor-display" id="reactorDisplay">
+      <div class="reactor-message" id="reactorMessage">Awaiting your thought...</div>
+      <div id="particles-js"></div>
+    </div>
+  </div>
+  
+  <!-- FOOTER -->
   <footer>
-    <h3>OUR MISSION IS TO BRING YOU FUTURE REVOLUTIONARY TECHNOLOGIES WITH GROUNDBREAKING QUALITY AND SPEED.</h3>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/share/16hSDBwyTB/"><img src= "assets/images/homepagefollowusonothersocialmediasectionoption1isfacebook.png" alt="Facebook"></a>
-      <a href="https://www.instagram.com/molecular_technology?igsh=MWJuZ3JrcDdpamp2dw=="><img src="assets/images/homepagefollowusonothersocialmediasectionoption2isinstagram.png" alt="Instagram"></a>
-      <a href="https://youtube.com/@molecular-technology?si=uaeG_BpGr_ySLbmj"><img src="assets/images/homepagefollowusonothersocialmediasectionoption3isyoutube.png" alt="YouTube"></a>
-      <a href="https://x.com/MolecularTechX?s=09"><img src="assets/images/homepagefollowusonothersocialmediasectionoption4istwitterorx.png" alt="Twitter"></a>
-
+    <div class="footer-content">
+      <div class="footer-about">
+        <div class="footer-logo">
+          <div class="logo-placeholder">MT</div>
+          <h3>MOLECULAR TECHNOLOGY</h3>
+        </div>
+        <p class="footer-mission">OUR MISSION IS TO BRING YOU FUTURE REVOLUTIONARY TECHNOLOGIES WITH GROUNDBREAKING QUALITY AND SPEED.</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4>INNOVATIONS</h4>
+        <ul>
+          <li><a href="innovations.html">Current Projects</a></li>
+          <li><a href="innovations.html">Research Areas</a></li>
+          <li><a href="innovations.html">Technology Portfolio</a></li>
+          <li><a href="innovations.html">Patents</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h4>COMPANY</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="team.html">Leadership</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h4>RESOURCES</h4>
+        <ul>
+          <li><a href="research.html">Publications</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="help.html">Support</a></li>
+        </ul>
+      </div>
+      
+      <div class="social-section">
+        <h4>CONNECT WITH US</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/share/16hSDBwyTB/"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/molecular_technology?igsh=MWJuZ3JrcDdpamp2dw=="><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com/@molecular-technology?si=uaeG_BpGr_ySLbmj"><i class="fab fa-youtube"></i></a>
+          <a href="https://x.com/MolecularTechX?s=09"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2025 MOLECULAR TECHNOLOGY. ALL RIGHTS RESERVED.
     </div>
   </footer>
 
@@ -418,11 +1479,518 @@
       if (index < slogan.length) {
         target.textContent += slogan.charAt(index);
         index++;
-        setTimeout(typeText, 40); // Typing speed
+        setTimeout(typeText, 40);
       }
     }
 
     typeText();
+  }
+  
+  // MOLECULE BUILDER
+  function initMoleculeBuilder() {
+    const canvas = document.getElementById('moleculeCanvas');
+    const moleculeDisplay = document.getElementById('moleculeDisplay');
+    const moleculeName = document.getElementById('moleculeName');
+    const atoms = document.querySelectorAll('.atom');
+    
+    let currentMolecule = [];
+    
+    atoms.forEach(atom => {
+      atom.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', atom.dataset.atom);
+      });
+    });
+    
+    moleculeDisplay.addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+    
+    moleculeDisplay.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const atomType = e.dataTransfer.getData('text/plain');
+      
+      // Create atom element
+      const atom = document.createElement('div');
+      atom.className = 'atom ' + (atomType === 'C' ? 'carbon' : 
+                                 atomType === 'H' ? 'hydrogen' : 
+                                 atomType === 'O' ? 'oxygen' : 'nitrogen');
+      atom.textContent = atomType;
+      atom.style.position = 'absolute';
+      atom.style.left = (e.offsetX - 25) + 'px';
+      atom.style.top = (e.offsetY - 25) + 'px';
+      
+      moleculeDisplay.appendChild(atom);
+      currentMolecule.push(atomType);
+      updateMoleculeName();
+    });
+    
+    function updateMoleculeName() {
+      const counts = {
+        'C': 0,
+        'H': 0,
+        'O': 0,
+        'N': 0
+      };
+      
+      currentMolecule.forEach(atom => {
+        counts[atom]++;
+      });
+      
+      let name = '';
+      if (counts['H'] === 2 && counts['O'] === 1) {
+        name = 'Water (H₂O)';
+      } else if (counts['C'] === 1 && counts['O'] === 2) {
+        name = 'Carbon Dioxide (CO₂)';
+      } else if (counts['N'] === 1 && counts['H'] === 3) {
+        name = 'Ammonia (NH₃)';
+      } else if (counts['C'] === 1 && counts['O'] === 1) {
+        name = 'Carbon Monoxide (CO)';
+      } else if (counts['C'] === 6 && counts['H'] === 12 && counts['O'] === 6) {
+        name = 'Glucose (C₆H₁₂O₆)';
+      } else {
+        name = currentMolecule.join('') + ' Molecule';
+      }
+      
+      moleculeName.textContent = name;
+    }
+    
+    // Reset button
+    const resetBtn = document.createElement('button');
+    resetBtn.textContent = 'Reset';
+    resetBtn.style.position = 'absolute';
+    resetBtn.style.bottom = '10px';
+    resetBtn.style.right = '10px';
+    resetBtn.style.padding = '5px 10px';
+    resetBtn.style.background = '#ff4d4d';
+    resetBtn.style.border = 'none';
+    resetBtn.style.borderRadius = '5px';
+    resetBtn.style.cursor = 'pointer';
+    resetBtn.addEventListener('click', () => {
+      moleculeDisplay.innerHTML = '<div class="molecule-name" id="moleculeName">Drag atoms here</div>';
+      currentMolecule = [];
+      moleculeName.textContent = 'Drag atoms here';
+    });
+    
+    moleculeDisplay.appendChild(resetBtn);
+  }
+  
+  // QUIZ GAME
+  function initQuizGame() {
+    const quizContainer = document.getElementById('quizContainer');
+    const quizQuestion = document.getElementById('quizQuestion');
+    const quizOptions = document.querySelectorAll('.quiz-option');
+    const quizFeedback = document.getElementById('quizFeedback');
+    
+    const questions = [
+      {
+        question: "What is the primary tool used to manipulate individual atoms?",
+        options: ["Atomic Force Microscope", "Electron Microscope", "Optical Tweezers", "Centrifuge"],
+        correct: 0
+      },
+      {
+        question: "Which element is the basis of organic chemistry?",
+        options: ["Oxygen", "Hydrogen", "Carbon", "Nitrogen"],
+        correct: 2
+      },
+      {
+        question: "What is graphene primarily composed of?",
+        options: ["Silicon atoms", "Carbon atoms", "Hydrogen atoms", "Oxygen atoms"],
+        correct: 1
+      }
+    ];
+    
+    let currentQuestion = 0;
+    
+    function loadQuestion() {
+      const q = questions[currentQuestion];
+      quizQuestion.textContent = q.question;
+      
+      quizOptions.forEach((option, index) => {
+        option.textContent = q.options[index];
+        option.classList.remove('correct', 'incorrect');
+      });
+      
+      quizFeedback.textContent = '';
+    }
+    
+    quizOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        const selectedIndex = Array.from(quizOptions).indexOf(option);
+        const isCorrect = selectedIndex === questions[currentQuestion].correct;
+        
+        if (isCorrect) {
+          option.classList.add('correct');
+          quizFeedback.textContent = "Correct! " + getFact();
+          quizFeedback.style.color = "#00ff00";
+          
+          setTimeout(() => {
+            currentQuestion = (currentQuestion + 1) % questions.length;
+            loadQuestion();
+          }, 2000);
+        } else {
+          option.classList.add('incorrect');
+          quizFeedback.textContent = "Incorrect. Try again!";
+          quizFeedback.style.color = "#ff0000";
+        }
+      });
+    });
+    
+    function getFact() {
+      const facts = [
+        "AFM can achieve resolutions of fractions of a nanometer!",
+        "Carbon can form more compounds than any other element!",
+        "Graphene is 200 times stronger than steel!"
+      ];
+      return facts[currentQuestion];
+    }
+    
+    loadQuestion();
+  }
+  
+  // PROTEIN FOLDING
+  function initProteinFolding() {
+    const proteinBtns = document.querySelectorAll('.protein-btn');
+    const foldBtn = document.getElementById('foldBtn');
+    const proteinStructure = document.getElementById('proteinStructure');
+    
+    let currentProtein = 'insulin';
+    
+    proteinBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        proteinBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentProtein = btn.dataset.protein;
+        resetProtein();
+      });
+    });
+    
+    foldBtn.addEventListener('click', () => {
+      foldProtein();
+    });
+    
+    function resetProtein() {
+      proteinStructure.innerHTML = '';
+      
+      // Create protein chain
+      const chainLength = currentProtein === 'insulin' ? 6 : 
+                         currentProtein === 'hemoglobin' ? 8 : 10;
+      
+      for (let i = 0; i < chainLength; i++) {
+        const chain = document.createElement('div');
+        chain.className = 'protein-chain';
+        chain.style.left = '50%';
+        chain.style.bottom = '50%';
+        chain.style.transform = rotate(${i * (360 / chainLength)}deg);
+        chain.style.animation = 'none';
+        proteinStructure.appendChild(chain);
+      }
+    }
+    
+    function foldProtein() {
+      const chains = document.querySelectorAll('.protein-chain');
+      chains.forEach(chain => {
+        chain.style.animation = 'fold 3s forwards';
+      });
+    }
+    
+    // Add CSS animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fold {
+        0% { height: 100px; transform: rotate(var(--start-rot)) translateY(0); }
+        50% { height: 50px; transform: rotate(calc(var(--start-rot) + 180deg)) translateY(-30px); }
+        100% { height: 100px; transform: rotate(calc(var(--start-rot) + 360deg)) translateY(0); }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    resetProtein();
+  }
+  
+  // SIZE COMPARATOR
+  function initSizeComparator() {
+    const sizeSlider = document.getElementById('sizeSlider');
+    const scaleDisplay = document.getElementById('scaleDisplay');
+    const atomObject = document.getElementById('atomObject');
+    const dnaObject = document.getElementById('dnaObject');
+    const virusObject = document.getElementById('virusObject');
+    const bacteriaObject = document.getElementById('bacteriaObject');
+    const hairObject = document.getElementById('hairObject');
+    
+    sizeSlider.addEventListener('input', () => {
+      const value = parseInt(sizeSlider.value);
+      const scale = Math.pow(10, value / 10);
+      
+      // Update scale display
+      if (scale < 1) {
+        scaleDisplay.textContent = Scale: ${scale.toFixed(1)} nanometer;
+      } else {
+        scaleDisplay.textContent = Scale: ${scale.toFixed(0)} nanometers;
+      }
+      
+      // Update object sizes
+      atomObject.style.width = ${10 * scale}px;
+      atomObject.style.height = ${10 * scale}px;
+      
+      dnaObject.style.width = ${15 * scale}px;
+      dnaObject.style.height = ${30 * scale}px;
+      
+      virusObject.style.width = ${25 * scale}px;
+      virusObject.style.height = ${25 * scale}px;
+      
+      bacteriaObject.style.width = ${40 * scale}px;
+      bacteriaObject.style.height = ${20 * scale}px;
+      
+      hairObject.style.width = ${5 * scale}px;
+      hairObject.style.height = ${60 * scale}px;
+    });
+  }
+  
+  // REACTION SIMULATOR
+  function initReactionSimulator() {
+    const chemicals = document.querySelectorAll('.chemical');
+    const beaker = document.getElementById('reactionBeaker');
+    const reactionResult = document.getElementById('reactionResult');
+    const reactionName = document.getElementById('reactionName');
+    
+    let chemicalsInBeaker = [];
+    
+    chemicals.forEach(chem => {
+      chem.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', chem.dataset.chem);
+      });
+    });
+    
+    beaker.addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+    
+    beaker.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const chemType = e.dataTransfer.getData('text/plain');
+      
+      chemicalsInBeaker.push(chemType);
+      updateReaction();
+    });
+    
+    function updateReaction() {
+      // Reset
+      reactionResult.style.backgroundColor = '';
+      reactionResult.style.height = '0';
+      reactionName.textContent = 'Add more chemicals';
+      
+      // Count chemicals
+      const count = {
+        'H': chemicalsInBeaker.filter(c => c === 'H').length,
+        'O': chemicalsInBeaker.filter(c => c === 'O').length,
+        'N': chemicalsInBeaker.filter(c => c === 'N').length,
+        'C': chemicalsInBeaker.filter(c => c === 'C').length
+      };
+      
+      // Determine reaction
+      let reaction = null;
+      
+      // Water
+      if (count['H'] >= 2 && count['O'] >= 1) {
+        reaction = { 
+          name: 'Water (H₂O) Formation', 
+          color: '#4d79ff', 
+          height: 70 
+        };
+        chemicalsInBeaker = chemicalsInBeaker.filter(c => c !== 'H' && c !== 'O');
+      }
+      // Carbon Dioxide
+      else if (count['C'] >= 1 && count['O'] >= 2) {
+        reaction = { 
+          name: 'Carbon Dioxide (CO₂) Formation', 
+          color: '#aaaaaa', 
+          height: 60 
+        };
+        chemicalsInBeaker = chemicalsInBeaker.filter(c => c !== 'C' && c !== 'O');
+      }
+      // Ammonia
+      else if (count['N'] >= 1 && count['H'] >= 3) {
+        reaction = { 
+          name: 'Ammonia (NH₃) Formation', 
+          color: '#4dff88', 
+          height: 50 
+        };
+        chemicalsInBeaker = chemicalsInBeaker.filter(c => c !== 'N' && c !== 'H');
+      }
+      // Methane
+      else if (count['C'] >= 1 && count['H'] >= 4) {
+        reaction = { 
+          name: 'Methane (CH₄) Formation', 
+          color: '#ffdd4d', 
+          height: 40 
+        };
+        chemicalsInBeaker = chemicalsInBeaker.filter(c => c !== 'C' && c !== 'H');
+      }
+      
+      // Apply reaction if found
+      if (reaction) {
+        reactionResult.style.backgroundColor = reaction.color;
+        reactionResult.style.height = reaction.height + 'px';
+        reactionName.textContent = reaction.name;
+        
+        // Add bubbles for effect
+        reactionResult.innerHTML = '';
+        for (let i = 0; i < 10; i++) {
+          const bubble = document.createElement('div');
+          bubble.style.position = 'absolute';
+          bubble.style.width = Math.random() * 10 + 5 + 'px';
+          bubble.style.height = bubble.style.width;
+          bubble.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+          bubble.style.borderRadius = '50%';
+          bubble.style.bottom = Math.random() * reaction.height + 'px';
+          bubble.style.left = Math.random() * 140 + 'px';
+          bubble.style.animation = bubble-rise ${2 + Math.random() * 3}s infinite;
+          reactionResult.appendChild(bubble);
+        }
+        
+        // Add bubble animation
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes bubble-rise {
+            0% { transform: translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-150px); opacity: 0; }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    }
+    
+    // Add reset button
+    const resetBtn = document.createElement('button');
+    resetBtn.textContent = 'Reset Reaction';
+    resetBtn.style.marginTop = '15px';
+    resetBtn.style.padding = '8px 15px';
+    resetBtn.style.background = '#ff4d4d';
+    resetBtn.style.border = 'none';
+    resetBtn.style.borderRadius = '5px';
+    resetBtn.style.cursor = 'pointer';
+    resetBtn.addEventListener('click', () => {
+      chemicalsInBeaker = [];
+      reactionResult.style.height = '0';
+      reactionResult.innerHTML = '';
+      reactionName.textContent = 'Add chemicals to beaker';
+    });
+    
+    document.querySelector('.reaction-container').appendChild(resetBtn);
+  }
+  
+  // THOUGHT REACTOR
+  function initThoughtReactor() {
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 0, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: false },
+        move: { enable: true, speed: 2, direction: "none", random: true }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: false }, onclick: { enable: false } }
+      }
+    });
+    
+    const thoughtInput = document.getElementById('thoughtInput');
+    const reactorBtn = document.getElementById('reactorBtn');
+    const reactorDisplay = document.getElementById('reactorDisplay');
+    const reactorMessage = document.getElementById('reactorMessage');
+    const particles = window.particlesJS;
+    
+    // Define reactions
+    const reactions = {
+      freedom: { 
+        effect: 'fire', 
+        message: 'FREEDOM: Atoms burst into revolutionary fire particles!',
+        color: '#ff0000',
+        particleColor: '#ff9900'
+      },
+      tech: { 
+        effect: 'tech', 
+        message: 'TECH: Nanowires form advanced circuitry patterns!',
+        color: '#00aaff',
+        particleColor: '#00ccff'
+      },
+      chaos: { 
+        effect: 'chaos', 
+        message: 'CHAOS: Molecular structures destabilize!',
+        color: '#cc00ff',
+        particleColor: '#ff00cc'
+      },
+      ai: { 
+        effect: 'ai', 
+        message: 'AI: Neural networks form across the display!',
+        color: '#00ffaa',
+        particleColor: '#00ffcc'
+      },
+      space: { 
+        effect: 'space', 
+        message: 'SPACE: Molecular structures form cosmic patterns!',
+        color: '#0000ff',
+        particleColor: '#6666ff'
+      },
+      future: { 
+        effect: 'future', 
+        message: 'FUTURE: Chroniton particles ripple through time!',
+        color: '#ff00aa',
+        particleColor: '#ff66cc'
+      },
+      neural: { 
+        effect: 'neural', 
+        message: 'NEURAL: Synaptic connections form and pulse!',
+        color: '#ffff00',
+        particleColor: '#ffff66'
+      },
+      quantum: { 
+        effect: 'quantum', 
+        message: 'QUANTUM: Particles exist in superposition!',
+        color: '#00ff00',
+        particleColor: '#66ff66'
+      }
+    };
+    
+    reactorBtn.addEventListener('click', activateReactor);
+    thoughtInput.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') activateReactor();
+    });
+    
+    function activateReactor() {
+      const thought = thoughtInput.value.trim().toLowerCase();
+      if (!thought) return;
+      
+      // Reset display
+      reactorDisplay.className = 'reactor-display';
+      reactorMessage.textContent = '';
+      
+      // Find matching reaction or use random
+      let reaction = reactions[thought];
+      if (!reaction) {
+        // Get a random reaction
+        const keys = Object.keys(reactions);
+        reaction = reactions[keys[Math.floor(Math.random() * keys.length)]];
+      }
+      
+      // Apply effect
+      reactorDisplay.classList.add(effect-${reaction.effect});
+      reactorMessage.textContent = reaction.message;
+      
+      // Update particles
+      particles.pJSDom[0].pJS.particles.array = [];
+      particles.pJSDom[0].pJS.particles.color.value = reaction.particleColor;
+      particles.pJSDom[0].pJS.particles.number.value = 150;
+      particles.pJSDom[0].pJS.fn.particlesRefresh();
+      
+      // Clear input
+      thoughtInput.value = '';
+    }
   }
 
   window.onload = () => {
@@ -441,7 +2009,15 @@
     startAutoScroll('latestScroll');
     startAutoScroll('upcomingScroll');
 
-    startTypingAnimation(); // This works now yeah!
+    startTypingAnimation();
+    
+    // Initialize interactive features
+    initMoleculeBuilder();
+    initQuizGame();
+    initProteinFolding();
+    initSizeComparator();
+    initReactionSimulator();
+    initThoughtReactor();
   };
 </script>
   
