@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOLECULAR TECHNOLOGY | HOME</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOLECULAR TECHNOLOGY | FUTURISTIC TECH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <style>
     :root {
       --black: #0a0a0a;
+      --dark-gray: #121212;
+      --medium-gray: #1e1e1e;
+      --light-gray: #2d2d2d;
       --white: #ffffff;
-      --grey-100: #f5f5f5;
-      --grey-200: #e5e5e5;
-      --grey-300: #d4d4d4;
-      --grey-700: #404040;
-      --grey-800: #262626;
-      --red: #ff3333;
-      --red-dark: #cc0000;
-      --transition: all 0.3s ease;
+      --off-white: #e0e0e0;
+      --red: #ff003c;
+      --red-glow: 0 0 15px rgba(255, 0, 60, 0.7);
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     * {
@@ -30,118 +30,135 @@
     body {
       background-color: var(--black);
       color: var(--white);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Exo 2', sans-serif;
       overflow-x: hidden;
-      opacity: 0;
-      animation: fadeBody 1.2s ease forwards;
       line-height: 1.6;
+      position: relative;
     }
 
-    @keyframes fadeBody {
-      to { opacity: 1; }
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
     /* Header */
     header {
-      text-align: center;
-      padding: 40px 20px 20px;
+      padding: 40px 0 20px;
       position: relative;
+      text-align: center;
+      animation: fadeIn 1.2s ease forwards;
+      opacity: 0;
     }
 
-    .header-content {
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
 
     .logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 20px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.8rem;
+      font-weight: 900;
+      background: linear-gradient(to right, var(--white), var(--off-white), #aaa, var(--white));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
       position: relative;
       display: inline-block;
     }
 
     .logo::after {
-      content: "";
+      content: '';
       position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 3px;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 250px;
+      height: 4px;
       background: var(--red);
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: transform 0.4s ease;
+      border-radius: 2px;
+      box-shadow: var(--red-glow);
+      animation: pulseLine 2s infinite ease-in-out;
     }
 
-    .logo:hover::after {
-      transform: scaleX(1);
+    @keyframes pulseLine {
+      0%, 100% { width: 250px; opacity: 1; }
+      50% { width: 300px; opacity: 0.7; }
     }
 
     .slogan {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: var(--grey-300);
-      max-width: 90%;
-      margin: 0 auto 30px;
+      font-size: 1.2rem;
+      color: var(--off-white);
+      max-width: 700px;
+      margin: 0 auto 40px;
       position: relative;
-      padding: 0 10px;
+      padding: 0 20px;
+    }
+
+    .slogan::before, .slogan::after {
+      content: '❖';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--red);
+      font-size: 1.4rem;
+    }
+
+    .slogan::before {
+      left: 0;
     }
 
     .slogan::after {
-      content: "";
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 2px;
-      background: var(--red);
-      border-radius: 2px;
+      right: 0;
     }
 
     /* Navigation */
     nav {
       display: flex;
       justify-content: center;
-      margin: 40px 0 30px;
+      margin: 40px 0 60px;
       position: relative;
     }
 
     .nav-container {
       display: flex;
-      background: var(--grey-800);
-      border-radius: 8px;
-      padding: 4px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 12px;
+      padding: 6px;
+      box-shadow: 0 0 30px rgba(255, 0, 60, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     nav button {
       background: transparent;
       border: none;
-      color: var(--grey-300);
-      padding: 12px 24px;
-      font-size: 0.9rem;
-      font-weight: 500;
+      color: var(--off-white);
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 600;
       cursor: pointer;
-      border-radius: 6px;
+      border-radius: 8px;
       transition: var(--transition);
       position: relative;
       z-index: 1;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
     }
 
     nav button:hover {
       color: var(--white);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
     }
 
     nav button.active {
@@ -150,164 +167,394 @@
 
     .nav-indicator {
       position: absolute;
-      height: calc(100% - 8px);
-      background: var(--red);
-      border-radius: 6px;
+      height: calc(100% - 12px);
+      background: rgba(255, 0, 60, 0.3);
+      border-radius: 8px;
       z-index: 0;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 0 15px rgba(255, 51, 51, 0.3);
+      transition: var(--transition);
+      box-shadow: var(--red-glow);
+      border: 1px solid var(--red);
     }
 
-    /* Sections */
+    /* Main Sections */
     .section {
-      margin: 50px 0;
+      margin: 70px 0;
+      position: relative;
     }
 
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       padding-bottom: 15px;
-      border-bottom: 1px solid var(--grey-800);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 600;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
       color: var(--white);
       position: relative;
       display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     .section-title::after {
-      content: "";
+      content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: -8px;
       left: 0;
-      width: 40px;
-      height: 3px;
+      width: 60px;
+      height: 4px;
       background: var(--red);
+      border-radius: 2px;
+      box-shadow: var(--red-glow);
     }
 
     .view-all {
       color: var(--red);
-      font-size: 0.9rem;
+      font-size: 1rem;
+      font-weight: 600;
       text-decoration: none;
       transition: var(--transition);
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 8px;
+      font-family: 'Orbitron', sans-serif;
     }
 
     .view-all:hover {
       color: var(--white);
       transform: translateX(5px);
+      text-shadow: 0 0 10px var(--white);
     }
 
     /* Gallery */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
       margin-top: 20px;
     }
 
     .gallery-item {
-      background: var(--grey-800);
-      border-radius: 12px;
+      background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(18, 18, 18, 0.9));
+      border-radius: 16px;
       overflow: hidden;
       transition: var(--transition);
-      height: 380px;
+      height: 420px;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
       position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transform: translateY(0);
     }
 
     .gallery-item:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 51, 51, 0.2);
+      transform: translateY(-15px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), var(--red-glow);
+      border: 1px solid rgba(255, 0, 60, 0.3);
     }
 
     .gallery-img {
       width: 100%;
-      height: 250px;
-      background: var(--grey-700);
+      height: 220px;
+      background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       position: relative;
+      border-bottom: 2px solid var(--red);
     }
 
     .gallery-img::before {
-      content: "MOLECULAR TECHNOLOGY";
+      content: '';
       position: absolute;
-      color: var(--grey-300);
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      text-align: center;
-      opacity: 0.5;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.1), 
+        transparent);
+      animation: shine 2s infinite;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     .gallery-content {
-      padding: 20px;
+      padding: 25px;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
     }
 
     .gallery-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 600;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
       color: var(--white);
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
     }
 
     .gallery-desc {
-      font-size: 0.9rem;
-      color: var(--grey-300);
-      margin-bottom: 15px;
+      font-size: 1rem;
+      color: var(--off-white);
+      margin-bottom: 20px;
       flex-grow: 1;
+      line-height: 1.7;
     }
 
     .gallery-btn {
-      background: var(--red);
-      color: var(--white);
-      border: none;
-      padding: 8px 15px;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 500;
+      background: transparent;
+      color: var(--red);
+      border: 2px solid var(--red);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
       align-self: flex-start;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
     }
 
     .gallery-btn:hover {
-      background: var(--red-dark);
-      transform: translateY(-2px);
+      background: var(--red);
+      color: var(--white);
+      box-shadow: var(--red-glow);
+      transform: translateY(-3px);
+    }
+
+    /* Games Section */
+    .games-section {
+      margin: 100px 0;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .game-card {
+      background: linear-gradient(145deg, rgba(30, 30, 30, 0.8), rgba(10, 10, 10, 0.9));
+      border-radius: 16px;
+      overflow: hidden;
+      transition: var(--transition);
+      height: 320px;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      transform: perspective(1000px) rotateX(0) rotateY(0);
+      transform-style: preserve-3d;
+    }
+
+    .game-card:hover {
+      transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 0, 60, 0.4);
+      border: 1px solid rgba(255, 0, 60, 0.3);
+    }
+
+    .game-content {
+      padding: 25px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+    }
+
+    .game-icon {
+      font-size: 3rem;
+      color: var(--red);
+      margin-bottom: 20px;
+      text-shadow: var(--red-glow);
+    }
+
+    .game-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    .game-desc {
+      font-size: 1rem;
+      color: var(--off-white);
+      margin-bottom: 25px;
+      flex-grow: 1;
+    }
+
+    .play-btn {
+      background: rgba(255, 0, 60, 0.15);
+      color: var(--red);
+      border: 2px solid var(--red);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .play-btn:hover {
+      background: var(--red);
+      color: var(--white);
+      box-shadow: var(--red-glow);
+      transform: translateY(-3px);
     }
 
     /* Footer */
     footer {
-      margin-top: 80px;
-      padding: 50px 0 30px;
-      background: linear-gradient(to top, rgba(10, 10, 10, 0.9), var(--black));
-      border-top: 1px solid var(--grey-800);
+      background: var(--dark-gray);
+      padding: 80px 0 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
     }
 
-    .mission {
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: var(--grey-300);
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 40px;
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1.5fr 2fr;
+      gap: 60px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+      background: linear-gradient(to right, var(--white), var(--off-white));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .company-info {
+      color: var(--off-white);
+      font-size: 1rem;
       line-height: 1.8;
+      max-width: 400px;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .links-column h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .links-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--red);
+      border-radius: 2px;
+    }
+
+    .links-column ul {
+      list-style: none;
+    }
+
+    .links-column ul li {
+      margin-bottom: 15px;
+    }
+
+    .links-column ul li a {
+      color: var(--off-white);
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-block;
+      position: relative;
+      padding-left: 0;
+    }
+
+    .links-column ul li a::before {
+      content: '›';
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--red);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .links-column ul li a:hover {
+      color: var(--white);
+      padding-left: 20px;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .links-column ul li a:hover::before {
+      opacity: 1;
+      left: 0;
+    }
+
+    .mission-statement {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px 0 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 50px 0 30px;
+      font-size: 1.2rem;
+      color: var(--off-white);
+      font-style: italic;
+      position: relative;
+    }
+
+    .mission-statement::before, .mission-statement::after {
+      content: '"';
+      position: absolute;
+      font-size: 4rem;
+      color: var(--red);
+      opacity: 0.3;
+    }
+
+    .mission-statement::before {
+      top: 20px;
+      left: 50px;
+    }
+
+    .mission-statement::after {
+      bottom: -20px;
+      right: 50px;
+      transform: rotate(180deg);
     }
 
     .social-container {
@@ -318,57 +565,50 @@
     }
 
     .social-icon {
-      width: 50px;
-      height: 50px;
-      background: var(--grey-800);
+      width: 55px;
+      height: 55px;
+      background: rgba(30, 30, 30, 0.7);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--white);
-      font-size: 1.2rem;
+      color: var(--off-white);
+      font-size: 1.4rem;
       transition: var(--transition);
       position: relative;
       overflow: hidden;
-    }
-
-    .social-icon::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--red);
-      z-index: -1;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .social-icon:hover {
       transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
-    }
-
-    .social-icon:hover::after {
-      transform: translateY(0);
-    }
-
-    .social-icon:hover i {
       color: var(--white);
+      box-shadow: var(--red-glow);
+      background: var(--red);
     }
 
     .copyright {
       text-align: center;
-      font-size: 0.85rem;
-      color: var(--grey-700);
-      margin-top: 30px;
+      font-size: 0.9rem;
+      color: var(--off-white);
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     /* Responsive Design */
+    @media (max-width: 1100px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 768px) {
       .logo {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
       }
       
       .slogan {
@@ -382,28 +622,32 @@
       
       nav button {
         padding: 10px 15px;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
       
-      .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      .gallery, .games-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       }
       
       .section-title {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+      }
+      
+      .footer-links {
+        grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 480px) {
       .logo {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
       
       .slogan {
         font-size: 0.9rem;
       }
       
-      .gallery {
+      .gallery, .games-grid {
         grid-template-columns: 1fr;
       }
       
@@ -412,20 +656,20 @@
       }
       
       .social-icon {
-        width: 42px;
-        height: 42px;
-        font-size: 1rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
       }
     }
   </style>
 </head>
 <body>
+  <div id="particles-js"></div>
+  
   <div class="container">
     <header>
-      <div class="header-content">
-        <h1 class="logo">MOLECULAR TECHNOLOGY</h1>
-        <p class="slogan">OUR RESEARCHERS CONCENTRATE ON INDIVIDUAL MOLECULES WHEN INNOVATING REVOLUTIONARY TECHNOLOGIES.</p>
-      </div>
+      <h1 class="logo">MOLECULAR TECHNOLOGY</h1>
+      <p class="slogan">OUR RESEARCHERS CONCENTRATE ON INDIVIDUAL MOLECULES WHEN INNOVATING REVOLUTIONARY TECHNOLOGIES</p>
     </header>
 
     <nav>
@@ -452,36 +696,36 @@
           <div class="gallery-item">
             <div class="gallery-img"></div>
             <div class="gallery-content">
-              <h3 class="gallery-title">Quantum Processor</h3>
-              <p class="gallery-desc">Next-gen quantum computing technology with unprecedented processing power.</p>
-              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+              <h3 class="gallery-title">QUANTUM PROCESSOR</h3>
+              <p class="gallery-desc">Next-gen quantum computing technology with unprecedented processing power and efficiency for complex calculations.</p>
+              <button class="gallery-btn" onclick="redirectTo('innovations.html#quantum')">EXPLORE</button>
             </div>
           </div>
           
           <div class="gallery-item">
             <div class="gallery-img"></div>
             <div class="gallery-content">
-              <h3 class="gallery-title">Neural Interface</h3>
-              <p class="gallery-desc">Direct brain-to-machine communication for enhanced capabilities.</p>
-              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+              <h3 class="gallery-title">NEURAL INTERFACE</h3>
+              <p class="gallery-desc">Direct brain-to-machine communication system for enhanced human capabilities and seamless control.</p>
+              <button class="gallery-btn" onclick="redirectTo('innovations.html#neural')">EXPLORE</button>
             </div>
           </div>
           
           <div class="gallery-item">
             <div class="gallery-img"></div>
             <div class="gallery-content">
-              <h3 class="gallery-title">Nano Robotics</h3>
-              <p class="gallery-desc">Microscopic machines for medical and industrial applications.</p>
-              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+              <h3 class="gallery-title">NANO ROBOTICS</h3>
+              <p class="gallery-desc">Microscopic machines for precision medical procedures and advanced manufacturing at molecular scale.</p>
+              <button class="gallery-btn" onclick="redirectTo('innovations.html#nano')">EXPLORE</button>
             </div>
           </div>
           
           <div class="gallery-item">
             <div class="gallery-img"></div>
             <div class="gallery-content">
-              <h3 class="gallery-title">Energy Matrix</h3>
-              <p class="gallery-desc">Revolutionary clean energy solution with zero carbon footprint.</p>
-              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+              <h3 class="gallery-title">ENERGY MATRIX</h3>
+              <p class="gallery-desc">Revolutionary clean energy solution with zero carbon footprint and unlimited power generation.</p>
+              <button class="gallery-btn" onclick="redirectTo('innovations.html#energy')">EXPLORE</button>
             </div>
           </div>
         </div>
@@ -497,36 +741,117 @@
           <div class="gallery-item">
             <div class="gallery-img"></div>
             <div class="gallery-content">
-              <h3 class="gallery-title">Peter v2</h3>
-              <p class="gallery-desc">Enhanced version of our flagship AI assistant with new capabilities.</p>
-              <button class="gallery-btn" onclick="redirectTo('YOUR LINK')">LEARN MORE</button>
+              <h3 class="gallery-title">PETER AI V2</h3>
+              <p class="gallery-desc">Enhanced version of our flagship AI assistant with advanced cognitive capabilities and human-like interaction.</p>
+              <button class="gallery-btn" onclick="redirectTo('innovations.html#peter')">EXPLORE</button>
             </div>
           </div>
           
           <div class="gallery-item">
             <div class="gallery-img"></div>
             <div class="gallery-content">
-              <h3 class="gallery-title">Bio-Synthesis</h3>
-              <p class="gallery-desc">Molecular-level synthesis of organic materials and compounds.</p>
-              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+              <h3 class="gallery-title">BIO-SYNTHESIS</h3>
+              <p class="gallery-desc">Molecular-level synthesis of organic materials and compounds for medical and industrial applications.</p>
+              <button class="gallery-btn" onclick="redirectTo('innovations.html#bio')">EXPLORE</button>
             </div>
           </div>
           
           <div class="gallery-item">
             <div class="gallery-img"></div>
             <div class="gallery-content">
-              <h3 class="gallery-title">Holo Display</h3>
-              <p class="gallery-desc">True holographic display technology without special glasses.</p>
-              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+              <h3 class="gallery-title">HOLO DISPLAY</h3>
+              <p class="gallery-desc">True holographic display technology without special glasses for immersive visual experiences.</p>
+              <button class="gallery-btn" onclick="redirectTo('innovations.html#holo')">EXPLORE</button>
             </div>
           </div>
           
           <div class="gallery-item">
             <div class="gallery-img"></div>
             <div class="gallery-content">
-              <h3 class="gallery-title">Quantum Encryption</h3>
-              <p class="gallery-desc">Unbreakable security protocol based on quantum mechanics.</p>
-              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+              <h3 class="gallery-title">QUANTUM ENCRYPTION</h3>
+              <p class="gallery-desc">Unbreakable security protocol based on quantum mechanics for ultimate data protection.</p>
+              <button class="gallery-btn" onclick="redirectTo('innovations.html#encryption')">EXPLORE</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section games-section">
+        <div class="section-header">
+          <h2 class="section-title">SCIENTIFIC GAMES LAB</h2>
+          <a href="#" class="view-all">ALL GAMES <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="games-grid">
+          <div class="game-card">
+            <div class="game-content">
+              <div class="game-icon"><i class="fas fa-atom"></i></div>
+              <h3 class="game-title">MOLECULAR BUILDER</h3>
+              <p class="game-desc">Construct complex molecules from atoms while maintaining stable chemical bonds.</p>
+              <button class="play-btn">PLAY NOW</button>
+            </div>
+          </div>
+          
+          <div class="game-card">
+            <div class="game-content">
+              <div class="game-icon"><i class="fas fa-rocket"></i></div>
+              <h3 class="game-title">QUANTUM RACE</h3>
+              <p class="game-desc">Navigate through quantum tunnels using principles of superposition and entanglement.</p>
+              <button class="play-btn">PLAY NOW</button>
+            </div>
+          </div>
+          
+          <div class="game-card">
+            <div class="game-content">
+              <div class="game-icon"><i class="fas fa-dna"></i></div>
+              <h3 class="game-title">GENOME PUZZLE</h3>
+              <p class="game-desc">Assemble DNA sequences to create new organisms with unique capabilities.</p>
+              <button class="play-btn">PLAY NOW</button>
+            </div>
+          </div>
+          
+          <div class="game-card">
+            <div class="game-content">
+              <div class="game-icon"><i class="fas fa-microchip"></i></div>
+              <h3 class="game-title">NANO ASSEMBLER</h3>
+              <p class="game-desc">Manipulate nanobots to construct microscopic machines atom by atom.</p>
+              <button class="play-btn">PLAY NOW</button>
+            </div>
+          </div>
+          
+          <div class="game-card">
+            <div class="game-content">
+              <div class="game-icon"><i class="fas fa-brain"></i></div>
+              <h3 class="game-title">NEURAL NETWORKS</h3>
+              <p class="game-desc">Train AI neural networks to solve complex problems and recognize patterns.</p>
+              <button class="play-btn">PLAY NOW</button>
+            </div>
+          </div>
+          
+          <div class="game-card">
+            <div class="game-content">
+              <div class="game-icon"><i class="fas fa-satellite"></i></div>
+              <h3 class="game-title">SPACE NAVIGATOR</h3>
+              <p class="game-desc">Plot courses through asteroid fields using gravitational slingshots and orbital mechanics.</p>
+              <button class="play-btn">PLAY NOW</button>
+            </div>
+          </div>
+          
+          <div class="game-card">
+            <div class="game-content">
+              <div class="game-icon"><i class="fas fa-vial"></i></div>
+              <h3 class="game-title">CHEMICAL REACTOR</h3>
+              <p class="game-desc">Combine elements to create compounds while managing exothermic reactions.</p>
+              <button class="play-btn">PLAY NOW</button>
+            </div>
+          </div>
+          
+          <div class="game-card">
+            <div class="game-content">
+              <div class="game-icon"><i class="fas fa-robot"></i></div>
+              <h3 class="game-title">ROBOTICS DESIGNER</h3>
+              <p class="game-desc">Design and program robots to complete complex tasks in challenging environments.</p>
+              <button class="play-btn">PLAY NOW</button>
             </div>
           </div>
         </div>
@@ -536,28 +861,119 @@
 
   <footer>
     <div class="container">
-      <p class="mission">OUR MISSION IS TO BRING YOU FUTURE REVOLUTIONARY TECHNOLOGIES WITH GROUNDBREAKING QUALITY AND SPEED.</p>
-      
-      <div class="social-container">
-        <a href="https://www.facebook.com/share/16hSDBwyTB/" class="social-icon">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/molecular_technology?igsh=MWJuZ3JrcDdpamp2dw==" class="social-icon">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://youtube.com/@molecular-technology?si=uaeG_BpGr_ySLbmj" class="social-icon">
-          <i class="fab fa-youtube"></i>
-        </a>
-        <a href="https://x.com/MolecularTechX?s=09" class="social-icon">
-          <i class="fab fa-twitter"></i>
-        </a>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">MOLECULAR TECHNOLOGY</div>
+          <div class="company-info">
+            <p>Pioneering the future through molecular-scale innovation and advanced technology development.</p>
+            <p>Founded in 2023 with a mission to revolutionize how humanity interacts with technology at the most fundamental level.</p>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <div class="links-column">
+            <h3>Products</h3>
+            <ul>
+              <li><a href="innovations.html">Innovations</a></li>
+              <li><a href="marketx.html">MarketX Platform</a></li>
+              <li><a href="startups.html">Startup Technologies</a></li>
+              <li><a href="#">Research Tools</a></li>
+              <li><a href="#">Developer Kits</a></li>
+            </ul>
+          </div>
+          
+          <div class="links-column">
+            <h3>Resources</h3>
+            <ul>
+              <li><a href="announces.html">Announcements</a></li>
+              <li><a href="#">Research Papers</a></li>
+              <li><a href="#">Technology Blog</a></li>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">API Reference</a></li>
+            </ul>
+          </div>
+          
+          <div class="links-column">
+            <h3>Company</h3>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Leadership</a></li>
+              <li><a href="issues.html">Security Issues</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="mission-statement">
+          OUR MISSION IS TO BRING YOU FUTURE REVOLUTIONARY TECHNOLOGIES WITH GROUNDBREAKING QUALITY AND SPEED.
+        </div>
+        
+        <div class="social-container">
+          <a href="https://www.facebook.com/share/16hSDBwyTB/" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/molecular_technology?igsh=MWJuZ3JrcDdpamp2dw==" class="social-icon">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://youtube.com/@molecular-technology?si=uaeG_BpGr_ySLbmj" class="social-icon">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://x.com/MolecularTechX?s=09" class="social-icon">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        
+        <div class="copyright">
+          © 2023 MOLECULAR TECHNOLOGY. ALL RIGHTS RESERVED. | TERMS OF USE | PRIVACY POLICY
+        </div>
       </div>
-      
-      <p class="copyright">© 2023 MOLECULAR TECHNOLOGY. ALL RIGHTS RESERVED.</p>
     </div>
   </footer>
 
   <script>
+    // Particles.js configuration
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.1, random: true },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ff003c",
+          opacity: 0.05,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" },
+          resize: true
+        }
+      },
+      retina_detect: true
+    });
+
     // Navigation indicator position
     function updateNavIndicator() {
       const activeButton = document.querySelector('nav button.active');
@@ -587,6 +1003,16 @@
     window.addEventListener('DOMContentLoaded', () => {
       document.body.style.opacity = 1;
       updateNavIndicator();
+      
+      // Add subtle animations to gallery items
+      document.querySelectorAll('.gallery-item').forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.1}s`;
+      });
+      
+      // Add subtle animations to game cards
+      document.querySelectorAll('.game-card').forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.15}s`;
+      });
     });
     
     window.addEventListener('resize', updateNavIndicator);
@@ -594,19 +1020,63 @@
     // Navigation functions
     function navigate(page) {
       document.body.style.opacity = 0;
+      document.body.style.transition = "opacity 0.5s ease";
       setTimeout(() => {
         window.location.href = page;
-      }, 400);
+      }, 500);
     }
     
     function redirectTo(link) {
       if (link && link !== 'LINK' && link !== 'YOUR LINK') {
-        window.location.href = link;
+        navigate(link);
       } else {
-        // Default behavior if link is not set
-        alert('Product details coming soon!');
+        // Create a futuristic notification
+        const notification = document.createElement('div');
+        notification.textContent = 'TECHNOLOGY DETAILS LOADING...';
+        notification.style.position = 'fixed';
+        notification.style.top = '20px';
+        notification.style.left = '50%';
+        notification.style.transform = 'translateX(-50%)';
+        notification.style.backgroundColor = 'rgba(255, 0, 60, 0.9)';
+        notification.style.color = 'white';
+        notification.style.padding = '15px 30px';
+        notification.style.borderRadius = '8px';
+        notification.style.zIndex = '1000';
+        notification.style.fontFamily = "'Orbitron', sans-serif";
+        notification.style.boxShadow = '0 0 20px rgba(255, 0, 60, 0.7)';
+        notification.style.animation = 'pulse 1.5s infinite';
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 3000);
       }
     }
+    
+    // Add mousemove effect to game cards
+    document.querySelectorAll('.game-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const angleY = (x - centerX) / 20;
+        const angleX = (centerY - y) / 20;
+        
+        card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-10px)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        setTimeout(() => {
+          card.style.transform = '';
+        }, 300);
+      });
+    });
   </script>
 </body>
 </html>
