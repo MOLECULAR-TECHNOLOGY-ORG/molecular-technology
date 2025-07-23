@@ -4,8 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MOLECULAR TECHNOLOGY | HOME</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Caladea&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --grey-100: #f5f5f5;
+      --grey-200: #e5e5e5;
+      --grey-300: #d4d4d4;
+      --grey-700: #404040;
+      --grey-800: #262626;
+      --red: #ff3333;
+      --red-dark: #cc0000;
+      --transition: all 0.3s ease;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -14,436 +28,585 @@
     }
 
     body {
-      background-color: black;
-      color: white;
-      font-family: 'Orbitron', sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
       overflow-x: hidden;
       opacity: 0;
-      animation: fadeBody 1.5s ease forwards;
+      animation: fadeBody 1.2s ease forwards;
+      line-height: 1.6;
     }
 
     @keyframes fadeBody {
       to { opacity: 1; }
     }
 
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
     header {
       text-align: center;
-      padding: 60px 20px 20px;
-      animation: fadeIn 2s ease;
-    }
-
-    header h1 {
-      font-size: 48px;
-      background: linear-gradient(270deg, #ff0000, #ff00d4, #7d14ed, #012ef1, #04fdf7, #04fdad);
-      background-size: 600% 600%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: aurora 7s ease infinite;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    header p {
-      font-family: Courier, monospace;
-      font-size: 18px;
-      max-width: 90%;
-      margin: 0 auto;
-      display: inline-block;
-      line-height: 1.4;
-      text-align: center;
-      overflow: hidden;
-      white-space: normal; /* allows wrapping */
-      border-right: 2px solid white;
-      animation: typingWrap 5s steps(60, end), blink-caret 0.75s step-end infinite;
-    }
-
-    .slogan-text {
-      font-family: Courier, monospace;
-      font-size: 18px;
-      max-width: 90%;
-      margin: 0 auto;
-      white-space: pre-wrap;
-      overflow-wrap: break-word;
-      display: inline-block;
-      line-height: 1.4;
+      padding: 40px 20px 20px;
       position: relative;
     }
 
-    .slogan-text::after {
-      content: '|';
-      animation: blink-caret 0.8s step-end infinite;
-      position: absolute;
-      right: -10px;
+    .header-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
     }
 
-    @keyframes blink-caret {
-      from, to { opacity: 0; }
-      50% { opacity: 1; }
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
     }
-    
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.4s ease;
+    }
+
+    .logo:hover::after {
+      transform: scaleX(1);
+    }
+
+    .slogan {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--grey-300);
+      max-width: 90%;
+      margin: 0 auto 30px;
+      position: relative;
+      padding: 0 10px;
+    }
+
+    .slogan::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: var(--red);
+      border-radius: 2px;
+    }
+
+    /* Navigation */
     nav {
       display: flex;
       justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      padding: 20px;
-      animation: fadeIn 1.5s ease;
+      margin: 40px 0 30px;
+      position: relative;
+    }
+
+    .nav-container {
+      display: flex;
+      background: var(--grey-800);
+      border-radius: 8px;
+      padding: 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     }
 
     nav button {
-      background-color: #111;
-      border: 1px solid red;
-      color: red;
-      padding: 14px 28px;
-      font-size: 16px;
-      text-transform: uppercase;
-      font-weight: bold;
+      background: transparent;
+      border: none;
+      color: var(--grey-300);
+      padding: 12px 24px;
+      font-size: 0.9rem;
+      font-weight: 500;
       cursor: pointer;
       border-radius: 6px;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 8px red;
-    }
-
-    nav button:hover {
-      background: red;
-      color: black;
-      transform: translateY(-3px);
-      box-shadow: 0 0 18px red;
-    }
-
-    .red-line {
-      height: 4px;
-      width: 100%;
-      background: red;
-      box-shadow: 0 0 10px red, 0 0 20px red;
-      margin: 20px 0;
-    }
-
-    section h2 {
-      font-size: 28px;
-      color: red;
-      text-align: center;
-      margin-top: 40px;
-      text-shadow: 0 0 8px red;
-    }
-
-    .scroll-wrapper {
+      transition: var(--transition);
       position: relative;
-      width: 95%;
-      margin: auto;
-    }
-
-    .scroll-container {
-      display: flex;
-      align-items: center;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      gap: 20px;
-      padding: 20px 50px;
-    }
-
-    .scroll-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    .scroll-container img {
-      width: 400px;
-      height: 500px;
-      border-radius: 20px;
-      transition: transform 0.4s, box-shadow 0.4s, filter 0.4s;
-      cursor: pointer;
-      flex: 0 0 auto;
-      position: relative;
-      overflow: hidden;
       z-index: 1;
     }
 
-    .scroll-container img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 40px red;
-      filter: brightness(1.1);
+    nav button:hover {
+      color: var(--white);
     }
 
-    .scroll-container img::after {
-      content: '';
+    nav button.active {
+      color: var(--white);
+    }
+
+    .nav-indicator {
       position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent
-      );
-      transform: skewX(-25deg);
-      z-index: 2;
-      transition: left 0.5s ease;
-      pointer-events: none;
-      border-radius: 20px;
+      height: calc(100% - 8px);
+      background: var(--red);
+      border-radius: 6px;
+      z-index: 0;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 0 15px rgba(255, 51, 51, 0.3);
     }
 
-    .scroll-container img:hover::after {
-      left: 125%;
+    /* Sections */
+    .section {
+      margin: 50px 0;
     }
 
-    .arrow {
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--grey-800);
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--white);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: "";
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: radial-gradient(circle, red, darkred);
-      border: none;
-      color: white;
-      font-size: 30px;
-      padding: 12px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 10;
-      transition: transform 0.3s ease;
+      bottom: -5px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--red);
     }
 
-    .arrow:disabled {
-      opacity: 0.3;
-      pointer-events: none;
+    .view-all {
+      color: var(--red);
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
-    .arrow:hover {
-      transform: translateY(-50%) scale(1.1);
-      box-shadow: 0 0 12px red;
+    .view-all:hover {
+      color: var(--white);
+      transform: translateX(5px);
     }
 
-    .arrow.left {
-      left: 5px;
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
     }
 
-    .arrow.right {
-      right: 5px;
+    .gallery-item {
+      background: var(--grey-800);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: var(--transition);
+      height: 380px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      position: relative;
     }
 
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 51, 51, 0.2);
+    }
 
-    footer {
-      margin-top: 60px;
-      padding: 20px;
+    .gallery-img {
+      width: 100%;
+      height: 250px;
+      background: var(--grey-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-img::before {
+      content: "MOLECULAR TECHNOLOGY";
+      position: absolute;
+      color: var(--grey-300);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
       text-align: center;
-      font-family: 'Caladea', serif;
+      opacity: 0.5;
     }
 
-    footer h3 {
-      color: white;
-      font-size: 18px;
+    .gallery-content {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gallery-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
       margin-bottom: 10px;
     }
 
-    .social-icons img {
-      width: 64px;
-      height: 64px;
-      margin: 0 10px;
-      filter: drop-shadow(0 0 5px red);
+    .gallery-desc {
+      font-size: 0.9rem;
+      color: var(--grey-300);
+      margin-bottom: 15px;
+      flex-grow: 1;
     }
 
-    @keyframes aurora {
-      0% {background-position: 0% 50%}
-      50% {background-position: 100% 50%}
-      100% {background-position: 0% 50%}
+    .gallery-btn {
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      align-self: flex-start;
     }
 
-    @keyframes typingWrap {
-      from { max-height: 0; opacity: 0; }
-      to { max-height: 500px; opacity: 1; }
+    .gallery-btn:hover {
+      background: var(--red-dark);
+      transform: translateY(-2px);
     }
 
-    @keyframes blink-caret {
-      from, to { border-color: transparent; }
-      50% { border-color: white; }
+    /* Footer */
+    footer {
+      margin-top: 80px;
+      padding: 50px 0 30px;
+      background: linear-gradient(to top, rgba(10, 10, 10, 0.9), var(--black));
+      border-top: 1px solid var(--grey-800);
     }
 
+    .mission {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--grey-300);
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+    }
+
+    .social-container {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--grey-800);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.2rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-icon::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--red);
+      z-index: -1;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+    }
+
+    .social-icon:hover::after {
+      transform: translateY(0);
+    }
+
+    .social-icon:hover i {
+      color: var(--white);
+    }
+
+    .copyright {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--grey-700);
+      margin-top: 30px;
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 32px;
+      .logo {
+        font-size: 2.5rem;
       }
-      header p {
-        font-size: 15px;
-        min-height: 3.2em;
-      }
-      .slogan-text {
-        font-size: 15px;
-      }
-      nav button {
-        font-size: 14px;
-        padding: 10px 20px;
-      }
-      .scroll-container img {
-        width: 250px;
-        height: 400px;
-      }
-
-       .arrow {
-        font-size: 24px;
-        padding: 8px;
       
+      .slogan {
+        font-size: 1rem;
+      }
+      
+      .nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav button {
+        padding: 10px 15px;
+        font-size: 0.8rem;
+      }
+      
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 2rem;
+      }
+      
+      .slogan {
+        font-size: 0.9rem;
+      }
+      
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+      
+      .social-container {
+        gap: 15px;
+      }
+      
+      .social-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>MOLECULAR TECHNOLOGY</h1>
-    <p id="slogan" class="slogan-text"></p>
-  </header>
-
-  <div class="red-line"></div>
-
-  <nav>
-    <button onclick="navigate('index.html')">HOME</button>
-    <button onclick="navigate('innovations.html')">INNOVATIONS</button>
-    <button onclick="navigate('marketx.html')">MARKETX</button>
-    <button onclick="navigate('announces.html')">ANNOUNCES</button>
-    <button onclick="navigate('startups.html')">STARTUPS</button>
-    <button onclick="navigate('issues.html')">ISSUES</button>
-    <button onclick="navigate('help.html')">HELP</button>
-  </nav>
-
-  <section>
-    <h2>LATEST INNOVATIONS</h2>
-    <div class="scroll-wrapper">
-      <button class="arrow left" onclick="scrollLeft('latestScroll')">◄</button>
-      <div class="scroll-container" id="latestScroll">
-        <img src="Latestproductimage1" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Latestproductimage2" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Latestproductimage3" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Latestproductimage4" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Latestproductimage5" onclick="redirectTo('YOUR LINK')"/>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <h1 class="logo">MOLECULAR TECHNOLOGY</h1>
+        <p class="slogan">OUR RESEARCHERS CONCENTRATE ON INDIVIDUAL MOLECULES WHEN INNOVATING REVOLUTIONARY TECHNOLOGIES.</p>
       </div>
-      <button class="arrow right" onclick="scrollRight('latestScroll')">►</button>
-    </div>
+    </header>
 
-    <h2>UPCOMING INNOVATIONS</h2>
-    <div class="scroll-wrapper">
-      <button class="arrow left" onclick="scrollLeft('upcomingScroll')">◄</button>
-      <div class="scroll-container" id="upcomingScroll">
-        <img src="assets/images/upcominginnovationssetcionimageno1productnameispetersecondversion.png" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Upcomingproductimage2" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Upcomingproductimage3" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Upcomingproductimage4" onclick="redirectTo('YOUR LINK')"/>
-        <img src="Upcomingproductimage5" onclick="redirectTo('YOUR LINK')"/>
+    <nav>
+      <div class="nav-container">
+        <div class="nav-indicator"></div>
+        <button class="active" onclick="navigate('index.html')">HOME</button>
+        <button onclick="navigate('innovations.html')">INNOVATIONS</button>
+        <button onclick="navigate('marketx.html')">MARKETX</button>
+        <button onclick="navigate('announces.html')">ANNOUNCES</button>
+        <button onclick="navigate('startups.html')">STARTUPS</button>
+        <button onclick="navigate('issues.html')">ISSUES</button>
+        <button onclick="navigate('help.html')">HELP</button>
       </div>
-      <button class="arrow right" onclick="scrollRight('upcomingScroll')">►</button>
-    </div>
-  </section>
+    </nav>
+
+    <main>
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">LATEST INNOVATIONS</h2>
+          <a href="innovations.html" class="view-all">VIEW ALL <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="gallery">
+          <div class="gallery-item">
+            <div class="gallery-img"></div>
+            <div class="gallery-content">
+              <h3 class="gallery-title">Quantum Processor</h3>
+              <p class="gallery-desc">Next-gen quantum computing technology with unprecedented processing power.</p>
+              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <div class="gallery-img"></div>
+            <div class="gallery-content">
+              <h3 class="gallery-title">Neural Interface</h3>
+              <p class="gallery-desc">Direct brain-to-machine communication for enhanced capabilities.</p>
+              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <div class="gallery-img"></div>
+            <div class="gallery-content">
+              <h3 class="gallery-title">Nano Robotics</h3>
+              <p class="gallery-desc">Microscopic machines for medical and industrial applications.</p>
+              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <div class="gallery-img"></div>
+            <div class="gallery-content">
+              <h3 class="gallery-title">Energy Matrix</h3>
+              <p class="gallery-desc">Revolutionary clean energy solution with zero carbon footprint.</p>
+              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">UPCOMING INNOVATIONS</h2>
+          <a href="innovations.html" class="view-all">VIEW ALL <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="gallery">
+          <div class="gallery-item">
+            <div class="gallery-img"></div>
+            <div class="gallery-content">
+              <h3 class="gallery-title">Peter v2</h3>
+              <p class="gallery-desc">Enhanced version of our flagship AI assistant with new capabilities.</p>
+              <button class="gallery-btn" onclick="redirectTo('YOUR LINK')">LEARN MORE</button>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <div class="gallery-img"></div>
+            <div class="gallery-content">
+              <h3 class="gallery-title">Bio-Synthesis</h3>
+              <p class="gallery-desc">Molecular-level synthesis of organic materials and compounds.</p>
+              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <div class="gallery-img"></div>
+            <div class="gallery-content">
+              <h3 class="gallery-title">Holo Display</h3>
+              <p class="gallery-desc">True holographic display technology without special glasses.</p>
+              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <div class="gallery-img"></div>
+            <div class="gallery-content">
+              <h3 class="gallery-title">Quantum Encryption</h3>
+              <p class="gallery-desc">Unbreakable security protocol based on quantum mechanics.</p>
+              <button class="gallery-btn" onclick="redirectTo('LINK')">LEARN MORE</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <footer>
-    <h3>OUR MISSION IS TO BRING YOU FUTURE REVOLUTIONARY TECHNOLOGIES WITH GROUNDBREAKING QUALITY AND SPEED.</h3>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/share/16hSDBwyTB/"><img src= "assets/images/homepagefollowusonothersocialmediasectionoption1isfacebook.png" alt="Facebook"></a>
-      <a href="https://www.instagram.com/molecular_technology?igsh=MWJuZ3JrcDdpamp2dw=="><img src="assets/images/homepagefollowusonothersocialmediasectionoption2isinstagram.png" alt="Instagram"></a>
-      <a href="https://youtube.com/@molecular-technology?si=uaeG_BpGr_ySLbmj"><img src="assets/images/homepagefollowusonothersocialmediasectionoption3isyoutube.png" alt="YouTube"></a>
-      <a href="https://x.com/MolecularTechX?s=09"><img src="assets/images/homepagefollowusonothersocialmediasectionoption4istwitterorx.png" alt="Twitter"></a>
-
+    <div class="container">
+      <p class="mission">OUR MISSION IS TO BRING YOU FUTURE REVOLUTIONARY TECHNOLOGIES WITH GROUNDBREAKING QUALITY AND SPEED.</p>
+      
+      <div class="social-container">
+        <a href="https://www.facebook.com/share/16hSDBwyTB/" class="social-icon">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/molecular_technology?igsh=MWJuZ3JrcDdpamp2dw==" class="social-icon">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://youtube.com/@molecular-technology?si=uaeG_BpGr_ySLbmj" class="social-icon">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://x.com/MolecularTechX?s=09" class="social-icon">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </div>
+      
+      <p class="copyright">© 2023 MOLECULAR TECHNOLOGY. ALL RIGHTS RESERVED.</p>
     </div>
   </footer>
 
   <script>
-  function updateArrows(containerId) {
-    const container = document.getElementById(containerId);
-    const leftArrow = container.parentElement.querySelector(".arrow.left");
-    const rightArrow = container.parentElement.querySelector(".arrow.right");
-    const maxScrollLeft = container.scrollWidth - container.clientWidth;
-    const currentScroll = container.scrollLeft;
-    leftArrow.disabled = currentScroll <= 0;
-    rightArrow.disabled = currentScroll >= maxScrollLeft - 5;
-  }
-
-  function scrollLeft(id) {
-    const container = document.getElementById(id);
-    container.scrollLeft -= 400;
-    setTimeout(() => updateArrows(id), 300);
-  }
-
-  function scrollRight(id) {
-    const container = document.getElementById(id);
-    container.scrollLeft += 400;
-    setTimeout(() => updateArrows(id), 300);
-  }
-
-  function redirectTo(link) {
-    window.location.href = link;
-  }
-
-  function navigate(page) {
-    document.body.style.opacity = 0;
-    setTimeout(() => {
-      window.location.href = page;
-    }, 400);
-  }
-
-  // Auto-scroll with pause on hover
-  function startAutoScroll(containerId) {
-    const container = document.getElementById(containerId);
-    let direction = 1;
-    let interval;
-
-    function scroll() {
-      const maxScrollLeft = container.scrollWidth - container.clientWidth;
-      container.scrollLeft += 2 * direction;
-      if (container.scrollLeft >= maxScrollLeft || container.scrollLeft <= 0) {
-        direction *= -1;
-      }
-      updateArrows(containerId);
-    }
-
-    function start() {
-      interval = setInterval(scroll, 20);
-    }
-
-    function stop() {
-      clearInterval(interval);
-    }
-
-    container.addEventListener("mouseenter", stop);
-    container.addEventListener("mouseleave", start);
-    start();
-  }
-
-  // Typing animation
-  function startTypingAnimation() {
-    const slogan = "OUR RESEARCHERS CONCENTRATE ON INDIVIDUAL MOLECULES WHEN INNOVATING REVOLUTIONARY TECHNOLOGIES.";
-    const target = document.getElementById("slogan");
-    let index = 0;
-
-    function typeText() {
-      if (index < slogan.length) {
-        target.textContent += slogan.charAt(index);
-        index++;
-        setTimeout(typeText, 40); // Typing speed
+    // Navigation indicator position
+    function updateNavIndicator() {
+      const activeButton = document.querySelector('nav button.active');
+      const indicator = document.querySelector('.nav-indicator');
+      
+      if (activeButton) {
+        const buttonRect = activeButton.getBoundingClientRect();
+        const containerRect = activeButton.parentElement.getBoundingClientRect();
+        
+        indicator.style.width = `${buttonRect.width}px`;
+        indicator.style.transform = `translateX(${buttonRect.left - containerRect.left}px)`;
       }
     }
-
-    typeText();
-  }
-
-  window.onload = () => {
-    document.body.style.transition = "opacity 1s ease";
-    document.body.style.opacity = 1;
-
-    updateArrows('latestScroll');
-    updateArrows('upcomingScroll');
-
-    const latest = document.getElementById('latestScroll');
-    const upcoming = document.getElementById('upcomingScroll');
-
-    latest.addEventListener('scroll', () => updateArrows('latestScroll'));
-    upcoming.addEventListener('scroll', () => updateArrows('upcomingScroll'));
-
-    startAutoScroll('latestScroll');
-    startAutoScroll('upcomingScroll');
-
-    startTypingAnimation(); // This works now yeah!
-  };
-</script>
-  
+    
+    // Navigation button click handler
+    document.querySelectorAll('nav button').forEach(button => {
+      button.addEventListener('click', function() {
+        document.querySelectorAll('nav button').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        this.classList.add('active');
+        updateNavIndicator();
+      });
+    });
+    
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.style.opacity = 1;
+      updateNavIndicator();
+    });
+    
+    window.addEventListener('resize', updateNavIndicator);
+    
+    // Navigation functions
+    function navigate(page) {
+      document.body.style.opacity = 0;
+      setTimeout(() => {
+        window.location.href = page;
+      }, 400);
+    }
+    
+    function redirectTo(link) {
+      if (link && link !== 'LINK' && link !== 'YOUR LINK') {
+        window.location.href = link;
+      } else {
+        // Default behavior if link is not set
+        alert('Product details coming soon!');
+      }
+    }
+  </script>
 </body>
 </html>
