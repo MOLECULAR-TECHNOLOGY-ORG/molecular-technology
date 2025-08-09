@@ -619,15 +619,15 @@
        
         // Setup button event listeners
         document.getElementById('product-btn').addEventListener('click', function() {
-            prepareIdeaSubmission('product', 'review1work@gmail.com');
+            prepareIdeaSubmission('product', 'productimprovementidea.mtech@gmail.com');
         });
        
         document.getElementById('innovation-btn').addEventListener('click', function() {
-            prepareIdeaSubmission('innovation', 'review2work@gmail.com');
+            prepareIdeaSubmission('innovation', 'innovationidea.mtech@gmail.com');
         });
        
         document.getElementById('extraordinary-btn').addEventListener('click', function() {
-            prepareIdeaSubmission('extraordinary', 'review3work@gmail.com');
+            prepareIdeaSubmission('extraordinary', 'extraordinaryidea.mtech@gmail.com');
         });
        
         // Modal controls
@@ -641,7 +641,7 @@
                 sendIdeaEmail(userEmail);
                 document.getElementById('emailModal').classList.remove('show');
             } else {
-                alert('Please enter a valid email address');
+                alert('Please enter a valid email address!');
             }
         });
        
@@ -674,8 +674,6 @@
         }
        
         function sendIdeaEmail(userEmail) {
-            // In a real implementation, you would send the email to your server
-            // For this demo, we simulate sending the email
            
             // Prepare email content
             const subject = `${currentIdeaType.toUpperCase()} Idea Submission from ${userEmail}`;
@@ -753,4 +751,5 @@
         document.getElementById('extraordinary-count').textContent = document.getElementById('extraordinary-idea').value.length;
     </script>
 </body>
+
 </html>
