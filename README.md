@@ -8,11 +8,11 @@
 
 ---
 
-## ✦ You can explore our [Website](https://molecular-technology-org.github.io/molecular-technology) codes here, we won't push case on you!
+## ✦ You can explore our [Website](https://molecular-technology-org.github.io/molecular-technology)'s codes here, we won't push case on you!
 
 ---
 
-## ⌬ Visit our [Website](https://molecular-technology-org.github.io/molecular-technology) to visually, the great experience. And try our Latest Innovations accelerate with us! 
+## ⌬ Visit our [Website](https://molecular-technology-org.github.io/molecular-technology) to visualize, the great experience. And try our Latest Innovations to accelerate with us! 
 
 ---
 
