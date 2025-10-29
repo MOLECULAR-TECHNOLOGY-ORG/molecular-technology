@@ -16,4 +16,4 @@
 
 ---
 
-# Our **CPU** & **GPU** [Founder](https://x.com/IS_SAIKAT). 
+# Our **CPU** & **GPU** [Founder](https://linktr.ee/Saikat.Social). 
