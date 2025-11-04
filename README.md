@@ -2,13 +2,13 @@
 
 ---
 
-# ☄ Welcome to Future engineers GitHub Repository!
+# ☄ Welcome to company engineers' GitHub Repository!
 
-- **❏ Where researchers focuses on each Molecule to execute a Advance Technological Object that wasn't existed in Earth!**
+- **❏ Where researchers focuses on each Molecule to execute a Advance empire that transforms the Earth!**
 
 ---
 
-## ✦ You can explore our [Website](https://molecular-technology-org.github.io/molecular-technology)'s codes here, we won't push case on you!
+## ✦ You can explore and steal our [Website](https://molecular-technology-org.github.io/molecular-technology)'s codes here, we won't push case on you!
 
 ---
 
@@ -16,4 +16,4 @@
 
 ---
 
-# Our **CPU** & **GPU** [Founder](https://linktr.ee/Saikat.Social). 
+# Our Core, [Founder](https://linktr.ee/Saikat.Social). 
